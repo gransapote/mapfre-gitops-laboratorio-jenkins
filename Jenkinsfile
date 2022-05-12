@@ -8,7 +8,7 @@ pipeline {
             }
         }
         stage('Segundo Agente') {
-	    agent {label 'Docker-agent'}	
+	    agent {label 'docker-agent'}	
             steps {
                 sh '''
 		    hostname
