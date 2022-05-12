@@ -1,13 +1,12 @@
 #!/bin/bash
+#set -x
 
-read -p "Escribe tu Nombre: " NOMBRE
+read -p "Escribe tu nombre: " NOMBRE
 
-VALOR=Secreto
-
-if [ "$NOMBRE" == "$VALOR" ]; 
-then 
-	echo "No pongas secreto"
-else 
-	echo "Tu nombre es $NOMBRE"
+if [ $NOMBRE = "secreto" ]
+then
+  echo -n "Encontraste el truco!: el primer parámetro del script es: "
+  echo $1 | rev
+else
+  echo "Encantado de saludarte, $NOMBRE"
 fi
-

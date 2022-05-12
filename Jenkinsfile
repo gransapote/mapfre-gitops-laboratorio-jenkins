@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -7,14 +8,23 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage('Segundo Agente') {
-	    agent {label 'docker-agent'}	
+        stage('Segundo stage') {
+            agent { label 'docker-agent' }
             steps {
                 sh '''
-		    hostname
-                    echo "Multiline shell steps works too"
-                    ls -lah
+                    hostname
+                    pwd
+                    ls -la /
                 '''
+            }
+        }
+        stage('Testing') {
+            when {
+                branch 'PR-*'
+            }
+            agent { label 'agent' }
+            steps {
+                sh './test.sh'
             }
         }
     }
